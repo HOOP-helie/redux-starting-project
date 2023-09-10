@@ -1,6 +1,6 @@
 import classes from './Counter.module.css';
 import { useSelector, useDispatch } from 'react-redux'
-
+import { increment, decrement, toggleBtn } from "./../store/index"
 const Counter = () => {
   const dispatch = useDispatch();
 
@@ -16,8 +16,8 @@ const Counter = () => {
   //   dispatch({ type: "TOGGLE_BTN" })
   // }
 
-  let currentValue = useSelector(state => state.counter);
-  let showBtn = useSelector(state => state.showBtn);
+  let currentValue = useSelector(state => state.counter.counter);
+  let showBtn = useSelector(state => state.counter.showBtn);
 
   return (
     <main className={classes.counter}>
@@ -26,12 +26,12 @@ const Counter = () => {
       {
         showBtn && (
           <div>
-            <button onClick={() => dispatch.increment()}>Increment</button>
-            <button onClick={() => dispatch.decrement()}>Decrement</button>
+            <button onClick={() => dispatch(increment())}>Increment</button>
+            <button onClick={() => dispatch(decrement())}>Decrement</button>
           </div>
         )
       }
-      <button onClick={() => dispatch.toggleBtn()}>Toggle</button>
+      <button onClick={() => dispatch(toggleBtn())}>Toggle</button>
     </main>
   );
 };

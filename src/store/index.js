@@ -1,14 +1,16 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
 
-const counterInitialState = { counter: 0, showBtn: true };
+const initialState = { counter: 0, showBtn: true };
 
 const counterSlice = createSlice({
     name: "counter",
-    counterInitialState,
+    initialState,
     reducers: {
-        increment: state => state.counter++,
-        decrement: state => state.counter--,
-        toggleBtn: state => !state.showBtn
+        increment: (state) => { state.counter++ },
+        decrement: (state) => { state.counter-- },
+        toggleBtn: (state) => {
+            return !state.showBtn
+        }
     }
 })
 // function updateCounter(action) {
@@ -25,6 +27,12 @@ const counterSlice = createSlice({
 // }
 
 
-const store = configureStore({ reducer: counterSlice.reducer })
+export const { increment, decrement, toggleBtn } = counterSlice.actions
+
+export const store = configureStore({
+    reducer: {
+        counter: counterSlice.reducer,
+    },
+})
 
 export default store 
