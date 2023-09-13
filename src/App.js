@@ -8,7 +8,8 @@ function App() {
   let isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   return (
     <>
-      {isAuthenticated && (<><Header /> <UserProfile /></>)}
+      <Header />
+      {isAuthenticated && (<UserProfile />)}
       {!isAuthenticated && <Auth />}
       <Counter />
     </>
